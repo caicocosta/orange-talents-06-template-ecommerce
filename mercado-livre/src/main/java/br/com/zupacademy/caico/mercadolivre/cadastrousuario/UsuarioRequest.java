@@ -7,9 +7,12 @@ import javax.validation.constraints.NotBlank;
 
 import org.hibernate.validator.constraints.Length;
 
+import br.com.zupacademy.caico.mercadolivre.validators.UniqueValue;
+
 public class UsuarioRequest {
 
-	@NotBlank @Email
+	@NotBlank @Email 
+	@UniqueValue(domainClass = Usuarios.class, fieldName = "login", message = "Já existe um usuário cadastrado com esse e-mail.")
 	private String login;
 	
 	@NotBlank @Length(min = 6)
