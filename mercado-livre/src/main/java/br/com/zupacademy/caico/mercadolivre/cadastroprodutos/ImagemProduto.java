@@ -1,7 +1,5 @@
 package br.com.zupacademy.caico.mercadolivre.cadastroprodutos;
 
-import java.util.Set;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
