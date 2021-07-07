@@ -1,5 +1,7 @@
 package br.com.zupacademy.caico.mercadolivre.cadastroprodutos;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,39 +11,44 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.URL;
+
 @Entity
-public class CaracteristicasProduto {
+public class ImagemProduto {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotBlank
-	private String nome;
-	@NotBlank
-	private String descricao;
-	@NotNull @Valid
+	@Valid	
+	@NotNull
 	@ManyToOne
 	private Produtos produto;
+	
+	@URL
+	@NotBlank
+	private String link;
 
 	@Deprecated
-	public CaracteristicasProduto() {
+	public ImagemProduto() {
 		
 	}
 	
-	public CaracteristicasProduto(@NotBlank String nome, @NotBlank String descricao, @NotNull @Valid Produtos produto) {
+	public ImagemProduto(@Valid @NotNull Produtos produto, @URL @NotBlank String link) {
 		super();
-		this.nome = nome;
-		this.descricao = descricao;
 		this.produto = produto;
+		this.link = link;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((link == null) ? 0 : link.hashCode());
+		result = prime * result + ((produto == null) ? 0 : produto.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -50,14 +57,18 @@ public class CaracteristicasProduto {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		CaracteristicasProduto other = (CaracteristicasProduto) obj;
-		if (nome == null) {
-			if (other.nome != null)
+		ImagemProduto other = (ImagemProduto) obj;
+		if (link == null) {
+			if (other.link != null)
 				return false;
-		} else if (!nome.equals(other.nome))
+		} else if (!link.equals(other.link))
+			return false;
+		if (produto == null) {
+			if (other.produto != null)
+				return false;
+		} else if (!produto.equals(other.produto))
 			return false;
 		return true;
 	}
 	
-
 }

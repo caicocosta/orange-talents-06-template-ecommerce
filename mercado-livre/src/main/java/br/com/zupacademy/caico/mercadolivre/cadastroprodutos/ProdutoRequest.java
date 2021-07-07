@@ -104,7 +104,6 @@ public class ProdutoRequest {
 				produto.getQuantidade(),
 				produto.getDescricao(),
 				produto.getCategoria(),
-				produto.getCaracteristicas(),
 				usuarioResponse
 				);
 		

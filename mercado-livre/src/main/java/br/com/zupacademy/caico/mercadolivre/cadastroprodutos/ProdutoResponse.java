@@ -13,11 +13,9 @@ public class ProdutoResponse {
 	private Integer quantidade;
 	private String descricao;
 	private Categorias categoria;
-	private Set<CaracteristicasProduto> caracteristicas = new HashSet<>();
 	private UsuarioResponse usuario;
 	
 	public ProdutoResponse(String nome, Double valor, Integer quantidade, String descricao, Categorias categoria,
-			Set<CaracteristicasProduto> caracteristicas,
 			UsuarioResponse usuario) {
 		this.nome = nome;
 		this.valor = valor;
@@ -25,7 +23,6 @@ public class ProdutoResponse {
 		this.descricao = descricao;
 		this.categoria = categoria;
 		this.usuario = usuario;
-		this.caracteristicas = caracteristicas;
 	}
 	public String getNome() {
 		return nome;
@@ -41,10 +38,6 @@ public class ProdutoResponse {
 	}
 	public Categorias getCategoria() {
 		return categoria;
-	}
-	
-	public Set<CaracteristicasProduto> getCaracteristicas() {
-		return caracteristicas;
 	}
 	
 	public UsuarioResponse getUsuario() {

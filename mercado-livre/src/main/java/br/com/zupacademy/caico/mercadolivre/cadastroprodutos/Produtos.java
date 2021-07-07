@@ -59,7 +59,14 @@ public class Produtos {
 
 	@OneToMany(mappedBy = "produto", cascade = CascadeType.PERSIST)
 	private Set<CaracteristicasProduto> caracteristicas = new HashSet<>();
+
+	@OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
+	private Set<ImagemProduto> imagens = new HashSet<>();
 	
+	@Deprecated
+	public Produtos() {
+		
+	}
 
 	/**
 	 * 
@@ -123,10 +130,6 @@ public class Produtos {
 		return dataCriacao;
 	}
 	
-	public Set<CaracteristicasProduto> getCaracteristicas() {
-		return caracteristicas;
-	}
-
 
 	@Override
 	public int hashCode() {
@@ -152,6 +155,19 @@ public class Produtos {
 		} else if (!nome.equals(other.nome))
 			return false;
 		return true;
+	}
+
+
+	public void AssociaImagens(Set<String> links) {
+	   Set<ImagemProduto> imagens =	links.stream()
+			  								 .map(link -> new ImagemProduto(this, link))
+			  								 .collect(Collectors.toSet());
+	   this.imagens.addAll(imagens);
+	
+	}
+
+	public boolean pertenceAoUsuario(Usuarios logado) {
+		return this.usuario.equals(logado);
 	}
 	
 }
