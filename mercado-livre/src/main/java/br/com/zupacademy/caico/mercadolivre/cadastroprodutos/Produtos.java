@@ -25,6 +25,7 @@ import org.springframework.util.Assert;
 
 import br.com.zupacademy.caico.mercadolivre.cadastrocategoria.Categorias;
 import br.com.zupacademy.caico.mercadolivre.cadastrousuario.Usuarios;
+import br.com.zupacademy.caico.mercadolivre.exception.Exceptions;
 
 @Entity
 public class Produtos {
@@ -183,4 +184,12 @@ public class Produtos {
 				   .collect(Collectors.toSet());
 	}
 	
+	
+	public Boolean diminueEstoque(Integer quantidade) {
+        if(quantidade <= this.quantidade) {
+        	this.quantidade = this.quantidade - quantidade;
+        	return true;
+        }
+        return false;
+	}
 }
