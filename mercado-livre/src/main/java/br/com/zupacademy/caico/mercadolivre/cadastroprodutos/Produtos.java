@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
@@ -40,9 +41,6 @@ public class Produtos {
 	
 	@NotNull @PositiveOrZero
 	private Integer quantidade;
-	
-	//@NotNull @Size(min = 3)
-	//private List<Caracteristicas> caracteristicas;
 	
 	@NotBlank @Length(max = 1000)
 	private String descricao;
@@ -130,6 +128,14 @@ public class Produtos {
 		return dataCriacao;
 	}
 	
+	public Set<CaracteristicasProduto> getCaracteristicas() {
+		return caracteristicas;
+	}
+	
+	public Set<ImagemProduto> getImagens() {
+		return imagens;
+	}
+	
 
 	@Override
 	public int hashCode() {
@@ -168,6 +174,13 @@ public class Produtos {
 
 	public boolean pertenceAoUsuario(Usuarios logado) {
 		return this.usuario.equals(logado);
+	}
+
+	public <T> Set<T> litaCaracteristicas(
+			Function<CaracteristicasProduto, T> 
+			funcaoConverter) {
+		return this.caracteristicas.stream().map(funcaoConverter)
+				   .collect(Collectors.toSet());
 	}
 	
 }
