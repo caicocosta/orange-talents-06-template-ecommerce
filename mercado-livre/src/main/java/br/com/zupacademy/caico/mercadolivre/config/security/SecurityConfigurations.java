@@ -50,6 +50,8 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests()
 			.antMatchers("/usuarios").permitAll()
 			.antMatchers(HttpMethod.POST, "/auth").permitAll()
+			.antMatchers(HttpMethod.POST, "/gera-nota").permitAll()
+			.antMatchers(HttpMethod.POST, "/processa-ranking").permitAll()
 			.anyRequest().authenticated()
 			.and().cors()
 			.and().csrf().disable()
