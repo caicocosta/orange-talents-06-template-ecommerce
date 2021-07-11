@@ -57,7 +57,7 @@ public class ComprasRequest {
 		};
 		
 		entityManager.persist(compra);
-	    String urlRetorno =	pagamento.redireciona(compra.getUuid(), uri);
+	    String urlRetorno =	pagamento.redireciona(compra.getId(), uri);
 		return urlRetorno;
 	}
 	
